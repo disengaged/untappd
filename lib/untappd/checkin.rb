@@ -1,7 +1,7 @@
 module Untappd
   class Checkin < Base
     def self.info(checkin_id)
-      response_to_mash get("/checkin/view/#{checkin_id}", :query => auth_options)
+      response_to_mash get("/checkin/view/#{checkin_id}", :query => auth_options(options['access_token']))
     end
 
     # options:
@@ -9,7 +9,7 @@ module Untappd
     # * max_id (int, optional) - The checkin ID that you want the results to start with
     # * limit (int, optional) - The number of results to return, max of 50, default is 25
     def self.feed(options={})
-      options.merge!(auth_options)
+      options.merge!(auth_options(options['access_token']))
       response_to_mash get("/thepub", :query => options)
     end
 
@@ -21,7 +21,7 @@ module Untappd
     # * max_id (int, optional) - The checkin ID that you want the results to start with
     # * limit (int, optional) - The number of results to return, max of 50, default is 25
     def self.local_feed(lng, lat, radius, options={})
-      options.merge!(auth_options)
+      options.merge!(auth_options(options['access_token']))
       options.merge!({
         :lng      => lng,
         :lat      => lat,

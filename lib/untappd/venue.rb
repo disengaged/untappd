@@ -6,17 +6,18 @@ module Untappd
     # * max_Id (int, optional) - The checkin ID that you want the results to start with
     # * limit (int, optional) - The number of results to return, max of 50, default is 25
     def self.feed(venue_id, options={})
-      options.merge!(auth_options)
+      options.merge!(auth_options(options['access_token']))
       response_to_mash get("/venue/checkins/#{venue_id}", :query => options)
     end
 
-    def self.info(venue_id)
-      response_to_mash get("/venue/info/#{venue_id}", :query => auth_options)
+    def self.info(venue_id, options={})
+      options.merge!(auth_options(options['access_token']))
+      response_to_mash get("/venue/info/#{venue_id}", :query => options)
     end
 
     def self.foursquare_lookup(foursquare_id)
       response_to_mash(
-        get("/venue/foursquare_lookup/#{foursquare_id}", :query => auth_options)
+        get("/venue/foursquare_lookup/#{foursquare_id}", :query => auth_options(options['access_token']))
       )
     end
   end

@@ -17,11 +17,17 @@ module Untappd
       end
     end
 
-    def self.auth_options
-      {
-        :client_id => Untappd.config.client_id,
-        :client_secret => Untappd.config.client_secret
-      }
+    def self.auth_options(access_token=nil)
+      if access_token
+        {
+          :access_token => access_token
+        }
+      else
+        {
+          :client_id => Untappd.config.client_id,
+          :client_secret => Untappd.config.client_secret
+        }
+      end
     end
   end
 
