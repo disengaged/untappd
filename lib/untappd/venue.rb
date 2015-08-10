@@ -17,7 +17,7 @@ module Untappd
 
     def self.foursquare_lookup(foursquare_id)
       response_to_mash(
-        get("/venue/foursquare_lookup/#{foursquare_id}", :query => auth_options(options['access_token']))
+        get("/venue/foursquare_lookup/#{foursquare_id}", :query => auth_options())
       )
     end
   end

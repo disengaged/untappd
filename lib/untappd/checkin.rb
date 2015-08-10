@@ -1,7 +1,7 @@
 module Untappd
   class Checkin < Base
     def self.info(checkin_id)
-      response_to_mash get("/checkin/view/#{checkin_id}", :query => auth_options(options['access_token']))
+      response_to_mash get("/checkin/view/#{checkin_id}", :query => auth_options())
     end
 
     # options:

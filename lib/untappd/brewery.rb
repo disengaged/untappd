@@ -16,8 +16,8 @@ module Untappd
     end
 
     def self.search(q, options={})
-      options.merge!(auth_options(options['access_token']))
       options.merge!({ :q => q })
+      options.merge!(auth_options(options['access_token']))
       response_to_mash get("/search/brewery", :query => options)
     end
   end
